@@ -15,16 +15,39 @@ Algorithm:
 4.	Exit the program.
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    int n;
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    switch(n) {
+        case 5: printf("seventy one\n"); break;
+        case 6: printf("seventy two\n"); break;
+        case 7: printf("seventy three\n"); break;
+        case 8: printf("seventy four\n"); break;
+        case 9: printf("seventy five\n"); break;
+        case 10: printf("seventy six\n"); break;
+        case 11: printf("seventy seven\n"); break;
+        case 12: printf("seventy eight\n"); break;
+        case 13: printf("seventy nine\n"); break;
+        default: printf("greater than 13\n");
+    }
+
+    return 0;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter a number: 9
+seventy five
+```
 
 
 
@@ -46,16 +69,39 @@ Algorithm:
 6.	End
  
 Program:
+```
+#include <stdio.h>
+#include <string.h>
 
-//type your code here
+int main() {
+    char a[50];
+    int h, i, c;
+
+    printf("Enter a string of digits: ");
+    scanf("%s", a);
+
+    for (h = 0; h <= 3; h++) {
+        c = 0;
+        for (i = 0; i < strlen(a); i++) {
+            if (a[i] == (h + '0'))
+                c++;
+        }
+        printf("%d ", c);
+    }
+
+    printf("\n");
+    return 0;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter a string of digits: 01230123
+2 2 2 2
+```
 
 
 
@@ -83,16 +129,76 @@ Free the memory allocated for each string in s Free the memory allocated for s
 7.	End
  
 Program:
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-//type your code here
+// Function to swap two characters
+void swap(char *x, char *y) {
+    char temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+// Function to reverse a string
+void reverse(char *str, int l, int r) {
+    while (l < r) {
+        swap(&str[l], &str[r]);
+        l++;
+        r--;
+    }
+}
+
+// Function to find next permutation
+int next_permutation(char *str) {
+    int i = strlen(str) - 2;
+    while (i >= 0 && str[i] >= str[i + 1])
+        i--;
+    if (i < 0)
+        return 0;
+    int j = strlen(str) - 1;
+    while (str[j] <= str[i])
+        j--;
+    swap(&str[i], &str[j]);
+    reverse(str, i + 1, strlen(str) - 1);
+    return 1;
+}
+
+int main() {
+    char str[50];
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    // Sort string initially
+    for (int i = 0; i < strlen(str) - 1; i++)
+        for (int j = i + 1; j < strlen(str); j++)
+            if (str[i] > str[j])
+                swap(&str[i], &str[j]);
+
+    printf("Permutations in lexicographical order:\n");
+    do {
+        printf("%s\n", str);
+    } while (next_permutation(str));
+
+    return 0;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter a string: ABC
+Permutations in lexicographical order:
+ABC
+ACB
+BAC
+BCA
+CAB
+CBA
+```
 
 
 
@@ -116,16 +222,44 @@ Algorithm:
 7.	End
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+
+    int len = n * 2 - 1;
+
+    for (int i = 0; i < len; i++) {
+        for (int j = 0; j < len; j++) {
+            int min = i < j ? i : j;
+            if (len - 1 - i < min)
+                min = len - 1 - i;
+            if (len - 1 - j < min)
+                min = len - 1 - j;
+            printf("%d ", n - min);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter n: 3
+3 3 3 3 3
+3 2 2 2 3
+3 2 1 2 3
+3 2 2 2 3
+3 3 3 3 3
+```
 
 
 
@@ -155,16 +289,33 @@ o	Call the square() function and display the result.
 5.	End.
 
 Program:
+#include <stdio.h>
 
-//type your code here
+int square();
+
+int main() {
+    int result;
+    result = square();
+    printf("Square of the number is: %d\n", result);
+    return 0;
+}
+
+int square() {
+    int n;
+    printf("Enter a number: ");
+    scanf("%d", &n);
+    return n * n;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter a number: 5
+Square of the number is: 25
+```
 
 
 
