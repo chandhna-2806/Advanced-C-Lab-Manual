@@ -12,10 +12,32 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
+```
+#include <stdio.h>
+
+int max_of_four(int a, int b, int c, int d) {
+    int max = a;
+    if (b > max) max = b;
+    if (c > max) max = c;
+    if (d > max) max = d;
+    return max;
+}
+
+int main() {
+    int n1, n2, n3, n4, greater;
+    printf("Enter four numbers: ");
+    scanf("%d %d %d %d", &n1, &n2, &n3, &n4);
+    greater = max_of_four(n1, n2, n3, n4);
+    printf("Greatest number = %d\n", greater);
+    return 0;
+}
+```
 
 Output:
-//paste your output here
+```
+Enter four numbers: 12 45 23 9
+Greatest number = 45
+```
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -36,10 +58,40 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
+```
+#include <stdio.h>
+
+void calculate_the_max(int n, int k) {
+    int a = 0, o = 0, x = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            int and = i & j;
+            int or  = i | j;
+            int xor = i ^ j;
+            if (and < k && and > a) a = and;
+            if (or < k && or > o) o = or;
+            if (xor < k && xor > x) x = xor;
+        }
+    }
+    printf("%d\n%d\n%d\n", a, o, x);
+}
+
+int main() {
+    int n, k;
+    printf("Enter values for n and k: ");
+    scanf("%d %d", &n, &k);
+    calculate_the_max(n, k);
+    return 0;
+}
+```
 
 Output:
-//paste your output here
+```
+Enter values for n and k: 5 4
+2
+3
+3
+```
 
 Result:
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
@@ -59,10 +111,57 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int noshel, noque;
+    printf("Enter number of shelves and queries: ");
+    scanf("%d %d", &noshel, &noque);
+
+    int *nobookarr = calloc(noshel, sizeof(int));
+    int **shelarr = malloc(noshel * sizeof(int*));
+
+    for (int i = 0; i < noque; i++) {
+        int type;
+        scanf("%d", &type);
+        if (type == 1) {
+            int x, y;
+            scanf("%d %d", &x, &y);
+            nobookarr[x]++;
+            shelarr[x] = realloc(shelarr[x], nobookarr[x] * sizeof(int));
+            shelarr[x][nobookarr[x] - 1] = y;
+        } else if (type == 2) {
+            int x, y;
+            scanf("%d %d", &x, &y);
+            printf("%d\n", shelarr[x][y]);
+        } else if (type == 3) {
+            int x;
+            scanf("%d", &x);
+            printf("%d\n", nobookarr[x]);
+        }
+    }
+
+    for (int i = 0; i < noshel; i++)
+        free(shelarr[i]);
+    free(shelarr);
+    free(nobookarr);
+
+    return 0;
+}
+```
 
 Output:
-//paste your output here
+```
+Enter number of shelves and queries: 2 4
+1 0 10
+1 0 20
+3 0
+2 0 1
+2
+20
+```
 
 
 Result:
@@ -86,10 +185,32 @@ Algorithm:
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    int a[n];
+
+    printf("Enter %d integers: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+        sum += a[i];
+    }
+
+    printf("Sum of array elements = %d\n", sum);
+    return 0;
+}
+```
 
 Output:
-//paste your output here
+```
+Enter number of elements: 5
+Enter 5 integers: 1 2 3 4 5
+Sum of array elements = 15
+```
 
  
 
@@ -120,10 +241,37 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
+
+int main() {
+    char str[200];
+    int count = 0, inWord = 0;
+
+    printf("Enter a sentence: ");
+    fgets(str, sizeof(str), stdin);
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ' && str[i] != '\n') {
+            if (!inWord) {
+                inWord = 1;
+                count++;
+            }
+        } else {
+            inWord = 0;
+        }
+    }
+
+    printf("Number of words: %d\n", count);
+    return 0;
+}
+```
 
 Output:
-//paste your output here
+```
+Enter a sentence: C programming is fun
+Number of words: 3
+```
 
 
 
